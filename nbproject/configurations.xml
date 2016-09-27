@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles" displayName="头文件" projectFiles="true">
+      <itemPath>API/C/edsapi/src/ArchBackend.h</itemPath>
+      <itemPath>API/C/edsapi/src/Backend.h</itemPath>
+      <itemPath>EdsLiveData.h</itemPath>
+      <itemPath>EdsPointThread.h</itemPath>
+      <itemPath>HttpServer.h</itemPath>
+      <itemPath>KafkaServer.h</itemPath>
+      <itemPath>API/C/edsapi/src/LiveBackend.h</itemPath>
+      <itemPath>PointData.h</itemPath>
+      <itemPath>TL_Common.h</itemPath>
+      <itemPath>TL_Datetime.h</itemPath>
+      <itemPath>TL_Exp.h</itemPath>
+      <itemPath>TL_IniFile.h</itemPath>
+      <itemPath>TL_Lock.h</itemPath>
+      <itemPath>TL_Logger.h</itemPath>
+      <itemPath>TL_MemString.h</itemPath>
+      <itemPath>TL_Monitor.h</itemPath>
+      <itemPath>TL_Option.h</itemPath>
+      <itemPath>TL_Singleton.h</itemPath>
+      <itemPath>TL_Thread.h</itemPath>
+      <itemPath>TL_ThreadLock.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles" displayName="源文件" projectFiles="true">
+      <itemPath>API/C/edsapi/src/ArchClient.cpp</itemPath>
+      <itemPath>API/C/edsapi/src/Backend.cpp</itemPath>
+      <itemPath>EdsLiveData.cpp</itemPath>
+      <itemPath>EdsPointThread.cpp</itemPath>
+      <itemPath>API/C/edsapi/src/Errors.cpp</itemPath>
+      <itemPath>HttpServer.cpp</itemPath>
+      <itemPath>KafkaServer.cpp</itemPath>
+      <itemPath>API/C/edsapi/src/LiveClient.cpp</itemPath>
+      <itemPath>PointData.cpp</itemPath>
+      <itemPath>TL_Common.cpp</itemPath>
+      <itemPath>TL_Datetime.cpp</itemPath>
+      <itemPath>TL_Exp.cpp</itemPath>
+      <itemPath>TL_IniFile.cpp</itemPath>
+      <itemPath>TL_Logger.cpp</itemPath>
+      <itemPath>TL_MemString.cpp</itemPath>
+      <itemPath>TL_Option.cpp</itemPath>
+      <itemPath>TL_Thread.cpp</itemPath>
+      <itemPath>TL_ThreadLock.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles" displayName="资源文件" projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="测试文件"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="重要文件"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>API/C/edsapi/include/</pElem>
+            <pElem>include</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>API/C/lib</pElem>
+            <pElem>lib/rdkafka</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>archeds2</linkerLibLibItem>
+            <linkerLibLibItem>liveeds2</linkerLibLibItem>
+            <linkerLibLibItem>loggereds2</linkerLibLibItem>
+            <linkerLibLibItem>objeds2</linkerLibLibItem>
+            <linkerLibLibItem>sqlite_drveds2</linkerLibLibItem>
+            <linkerLibLibItem>PocoUtil</linkerLibLibItem>
+            <linkerLibLibItem>PocoJSON</linkerLibLibItem>
+            <linkerLibLibItem>PocoNet</linkerLibLibItem>
+            <linkerLibLibItem>PocoFoundation</linkerLibLibItem>
+            <linkerLibFileItem>lib/rdkafka/librdkafka++.a</linkerLibFileItem>
+            <linkerLibFileItem>lib/rdkafka/librdkafka.a</linkerLibFileItem>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerLibStdlibItem>DynamicLinking</linkerLibStdlibItem>
+            <linkerOptionItem>-lcrypto</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="API/C/edsapi/src/ArchBackend.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/ArchClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/Backend.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/Backend.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/Errors.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/LiveBackend.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/LiveClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EdsLiveData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EdsLiveData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EdsPointThread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EdsPointThread.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HttpServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HttpServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KafkaServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KafkaServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PointData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PointData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Common.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Datetime.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Datetime.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Exp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Exp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_IniFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_IniFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Lock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Logger.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Logger.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_MemString.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_MemString.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Monitor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Option.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Option.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Singleton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Thread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Thread.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_ThreadLock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_ThreadLock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="API/C/edsapi/src/ArchBackend.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/ArchClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/Backend.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/Backend.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/Errors.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/LiveBackend.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="API/C/edsapi/src/LiveClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EdsLiveData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EdsLiveData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EdsPointThread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EdsPointThread.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HttpServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HttpServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KafkaServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KafkaServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PointData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PointData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Common.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Datetime.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Datetime.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Exp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Exp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_IniFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_IniFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Lock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Logger.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Logger.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_MemString.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_MemString.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Monitor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Option.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Option.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Singleton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_Thread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Thread.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TL_ThreadLock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_ThreadLock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

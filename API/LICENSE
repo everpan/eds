@@ -1,0 +1,227 @@
+                                            Exhibit “C”
+
+End User License Agreement for  	                              Transition Technologies S.A.
+the Enterprise Data Server and
+EDS-based Software Products	                                                          Pawia 55
+ 	                                                                     01-030 Warsaw, Poland
+___________________________________________________________________________________________________
+
+                                     END USER LICENSE AGREEMENT
+              FOR THE ENTERPRISE DATA SERVER (‘EDS’) AND EDS-BASED SOFTWARE PRODUCTS
+
+TRANSITION TECHNOLOGIES SA  LICENSES THE EDS SOFTWARE PRODUCT AND OTHER EDS-BASED 
+SOFTWARE PRODUCTS TO YOU SUBJECT TO THE TERMS CONTAINED IN THIS END USER LICENSE 
+AGREEMENT ('EULA'). 
+
+READ THE TERMS OF THIS EULA CAREFULLY. 
+
+BY DOWNLOADING, INSTALLING, COPYING AND / OR OTHERWISE USING THE SOFTWARE (AS DEFINED BELOW), YOU 
+AGREE TO BE BOUND BY THE TERMS OF THIS EULA. 
+
+
+NOTICE TO CUSTOMER
+If you do not agree to the terms of this EULA, do not install, copy, or use this 
+software. This EULA is equal to the a contract between you (either an individual or an entity) and 
+Transition Technologies SA ('TT'), which governs your use of this EDS software product that 
+accompanies this EULA and related software components, which may include associated media, printed 
+materials, and online or electronic documentation.
+
+DEFINITIONS
+This EDS software package includes the Enterprise Data Server ('EDS') software product, related 
+EDS-Based software products designed for use with the EDS ('EDS-Based Software') and Open Source 
+Software components. The EDS software product is composed of a proprietary EDS software and 
+management interface component and other EDS-Based Software. 
+
+In this EULA, the EDS and EDS-Based Software products, associated media, printed materials, and 
+online or electronic documentation are referred to collectively herein as 'Software' or ‘Product’. 
+‘Documentation’ means any materials provided to End Users or to Reseller and thereafter to End 
+Users, describing the use and/or functionality of the Product. Documentation may be provided, in 
+any form, such as electronic, print or magnetic media, and includes product user manuals, reference 
+manuals and installation guides or on-line help.
+
+‘Reseller’ means a reseller of TT Software and has the resources and expertise to market, sell, 
+deploy and support  TT’s  products. Reseller shall be appointed, authorized and officially 
+legitimated by TT for sale purposes on limited specific area.
+Official US territory Reseller is Emerson Power & Water Solutions.
+
+‘End User’ means a customer of Reseller or TT that acquires the Software for its internal use 
+pursuant to the terms and conditions of an End User License Agreement. An End User shall have no 
+right to sublicense the Products or to grant to third person any kind of authorizations or 
+subsidiary rights.
+
+‘Improvements’ mean modifications, enhancements, translations, derivative works, updates, upgrades, 
+new versions or new releases, or other improvements to the Software which can be distinguished from 
+any other versions of Software in particular from the version which purchased by an End User.
+
+An ‘Upgrade Release’ or ‘Major Release’ means an improvement made by TT to a Software which 
+significantly changes the functions (functionality as well) of the Software. A Major Release is 
+indicated by specific number of a new version, indicated by the first two digits counted from the 
+left (e.g. 8.0.0).
+
+‘Marks’ mean all trademarks, trade names, logos and symbols or similar owned, controlled or adopted 
+by TT irrespective of their registrations, restrictions, reservations or limitations by any 
+authorized or unauthorized person.
+
+A ‘Support’ means the personnel and resources necessary for providing End Users with reasonable 
+training, instruction, assistance with the installation and operation of the Software.
+
+A ‘Territory’ means limited specific area worldwide, unless otherwise stated.
+
+An 'Installation' means a single physical (or virtual) even partial installation of the Software.
+
+A software license key ('Software License Key') issued to you by TT is required to use the Software.
+
+WARNING FOR EVALUATION LICENSEES
+The Software can be activated with a no-cost evaluation Software License Key. Evaluation Software 
+License Keys have an expiration date ('Expiration Date'). 
+If you activate the Software with an evaluation Software License Key: 
+(i)  you may use the Software until the Expiration Date only to evaluate the suitability of the 
+     Software for licensing on a for-fee basis; 
+(ii) the software is provided to you 'as is' without warranty of any kind, whether express, 
+     implied, statutory, or otherwise.
+TT BEARS NO LIABILITY FOR ANY DAMAGES RESULTING FROM USE (OR ATTEMPTED USE) OF THE SOFTWARE THROUGH 
+AND AFTER THE EXPIRATION DATE, AND HAS NO DUTY TO PROVIDE SUPPORT TO YOU.
+
+LICENSE
+The Software is licensed, not sold. Subject to the terms and limitations of this EULA, TT hereby 
+grants you against effected payment of purchase price as agreed - unlimited in time and not limited 
+to the territory of any country - a nonexclusive, nontransferable license, without rights to 
+sublicense, or to grant  any kind of authorizations or subsidiary rights, to: 
+(i)   Use the Software License Key to activate the Software to the extent permitted by your payment 
+      of applicable license fees (whether such fees are based on a single installation licensing 
+      model or any other TT approved licensing mode);
+(ii)  Install or have installed a single instance of the Software for each license fee paid; 
+(iii) Use the Software in accordance with this EULA; 
+(iv)  Use the Software in a legal manner; and 
+(v)   Use the documentation accompanying the Software strictly in connection with permitted uses of
+      the Software.
+
+You may obtain license certificate from TT if required.
+The license certificate is valid and binding until these EULA are not terminated.
+
+License may be extended according to additional individual agreement concluded with you.  Any 
+license extension shall be subject of detailed individual stipulation.
+
+LICENSE LIMITATIONS
+You may not copy the Software except for a reasonable number of machine-readable copies of the 
+Software for own backup or own archival purposes and except as expressly permitted in the ‘License’ 
+section above. You may not remove any titles, trademarks or trade names, copyright notices, 
+legends, or other proprietary markings on the Software. You are not granted any rights to any 
+trademarks or service marks of TT. TT retains all rights not expressly granted to you.
+The Software must not be rented or let out, even on free of charge basis.
+
+
+LICENSES REQUIRED FOR THIRD-PARTY SOFTWARE
+The Software enables you to install third-person another software that further enhance Software 
+functionality. You are responsible for obtaining any licenses necessary to operate any such 
+third-person another software, and must accept any license agreement required to use the 
+third-person another software.
+If the MySQL database server is used, TT provides a valid commercial license for each installation 
+of the MySQL. EDS software is shipped with OEM embedded MySQL license. 
+
+PROPRIETARY RIGHTS RESERVED BY TT 
+TT retains all rights, titles, and interest in and to the Software and the Software License Key 
+(Evaluation Software License Keys as well) and in all related copyrights, trade secrets, patents, 
+trademarks, and any other intellectual and industrial property and proprietary rights, including 
+registrations, reservations, applications, renewals, restrictions, limitations, or extensions of 
+such rights.
+
+RESTRICTIONS
+You may not: 
+(i)   sell, lease, license, sublicense, distribute or otherwise transfer in whole or in part the 
+      Software or the Software License Key (Evaluation Software License Keys as well);
+(ii)  provide, disclose, divulge or make available to, or permit use of the Software in whole or 
+      in part by, any third party without TT’s prior written consent; or 
+(iii) modify or create derivative works based upon the Software without TT’s prior written consent. 
+
+Except to the extent expressly permitted by applicable law, and to the extent that TT is not 
+permitted by that applicable law to exclude or limit the following rights, you may not decompile, 
+disassemble, reverse engineer, or otherwise attempt to derive source code from the Software, in 
+whole or in part. You may not disclose the results of any benchmark test of the Software to any 
+third party without TT’s prior written approval.
+
+SUPPORT AND SUBSCRIPTION SERVICES NOT INCLUDED
+TT will not provide any support services under this EULA. This EULA does not give you any rights to 
+any updates or upgrades to the Software or to any extensions or enhancements to the Software 
+developed by TT at any time in the future. You may purchase support and subscription services 
+separately. If you have purchased TT support and subscription services with the Software, these 
+services are provided to you under the Maintenance Contract Terms and Conditions as enclosed, and 
+by accepting the terms of this EULA you are accepting these Maintenance Contract Terms and 
+Conditions. Any supplemental software code or related materials that TT provides to you as part of 
+any support and subscription services are to be considered integral part of the Software and are 
+subject to the terms and conditions of this EULA. 
+TT may use any technical information you provide to TT for any TT business purposes without 
+restriction, including for product support and development. TT will not use information in a form 
+that personally identifies you.
+
+TERMINATION
+TT may terminate this EULA if you fail to comply with any term of this EULA. The termination can 
+be effected also by ceasing of any services or maintenance support for you. 
+In the event of termination, you must destroy all copies of the Software and Software License Key. 
+In addition you must remove all copies of the Software from all computers and terminals on which it 
+is installed. You must return any obtained license certificates as well.   
+You shall notify TT in any possible manner about completion of your obligations after termination 
+of this EULA. 
+
+GOVERNMENT RESTRICTIONS
+You may not export or re-export the Software except in compliance with the United States Export 
+Administration Act and the related rules or regulations as well similar non-U.S. government 
+restrictions, if applicable, implemented together with this EULA. Any use, modification, 
+reproduction, release, performing, displaying, or disclosing of the Software by the U.S. Government 
+or any other non-US government shall be ruled solely by the terms of this EULA.
+
+LIMITED WARRANTY
+TT warrants, for your benefit alone, that the Software conforms in all material respects to the 
+specifications for the current version of the Software. This warranty is expressly conditioned on 
+your observance of the operating, security, and data-control procedures set forth in the Software 
+Documentation.
+
+EXCEPT FOR THE PRECEDING EXPRESS LIMITED WARRANTY, TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE 
+LAW, TT PROVIDES THE SOFTWARE WITHOUT ANY WARRANTIES OF ANY KIND, EXPRESS, IMPLIED, STATUTORY, OR 
+IN ANY OTHER PROVISION OF THIS EULA OR COMMUNICATION WITH YOU, AND TT SPECIFICALLY DISCLAIMS ANY 
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+LIMITATION OF LIABILITY
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL TT BE LIABLE FOR ANY LOST 
+PROFITS OR BUSINESS OPPORTUNITIES, LOSS OF USE, BUSINESS INTERRUPTION, LOSS OF DATA, OR ANY OTHER 
+INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES UNDER ANY THEORY OF LIABILITY, WHETHER 
+BASED IN CONTRACT, TORT, NEGLIGENCE, PRODUCT LIABILITY, OR OTHERWISE. 
+
+TT’s  LIABILITY UNDER THIS EULA WILL NOT, IN ANY EVENT, EXCEED THE LICENSE FEES, IF ANY, PAID BY 
+YOU TO TT FOR THE SOFTWARE LICENSED BY YOU UNDER THIS EULA.
+
+THE FOREGOING LIMITATIONS SHALL APPLY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, 
+REGARDLESS OF WHETHER TT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND REGARDLESS OF 
+WHETHER ANY REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
+
+INJUNCTIVE RELIEF
+You acknowledge that, in the event of your breach of any of the foregoing provisions, TT will not 
+have an adequate remedy in money or damages. TT shall therefore be entitled to obtain an injunction 
+against such breach from any court of competent jurisdiction immediately upon request. TT’s right 
+to obtain injunctive relief shall not limit its right to seek further remedies.
+
+GENERAL
+If applied for the customer having the seat on the US territory, this EULA is governed by the laws 
+of the United States of America, without regard to conflict of law principles. 
+For the customers having the seat outside the US territory, this EULA is governed simultaneously 
+by the rules of laws of the United States of America, paternal law of the customer and the Polish 
+law but these rules of three legal systems can be applied without regard to conflict of law 
+rinciples and insofar they are not contradictory to each other.
+The United Nations Convention for the International Sale of Goods shall not apply. 
+
+This EULA is the entire agreement between us and supersedes the terms of any purchase orders and 
+any other communications or advertising with respect to the Software. If any provision of this EULA 
+is held invalid, the remainder of this EULA shall continue in full force and effect. This EULA may 
+be modified only by written agreement signed by authorized representatives of you and TT. 
+
+CONTACT INFORMATION
+If you have any questions about this EULA, or if you want to contact TT for any reason, please 
+direct all correspondence to: TT, Pawia 55, 01-030 Warsaw, Poland or email legal@tt.com.pl
+
+COPYRIGHT NOTICE
+© 1997-Present Transition Technologies All rights reserved worldwide. TT, the TT logo and all TT 
+software names and logos are trademarks of TT. All TT software is copyrighted and the intellectual 
+property of TT. All TT software is developed and distributed under license by TT. 
+Application Information: http://www.tt.com.pl
+
+

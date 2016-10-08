@@ -31,14 +31,17 @@ _points(points), _wizids(wizids) {
     }
     _switch_data = NULL;
 }
-void EdsPointThread::setPointFileName(const string& fname){
+
+void EdsPointThread::setPointFileName(const string& fname) {
     _point_file = fname;
 }
-void EdsPointThread::setSwitchData(SwitchData * switchData,const string& switch_topic_name,int parttionNum){
+
+void EdsPointThread::setSwitchData(SwitchData * switchData, const string& switch_topic_name, int parttionNum) {
     _switch_data = switchData;
     _switch_topic_name = switch_topic_name;
     _switch_partition_num = parttionNum;
 }
+
 EdsPointThread::~EdsPointThread() {
 }
 
@@ -56,12 +59,13 @@ void EdsPointThread::run() {
         gettimeofday(&_t2, NULL);
 
         //清理记录ts返回为0的记录
-        if(_timezero_liveids.size() > 5){
-            map<time_t,vector<int> >::iterator it = _timezero_liveids.end();
-            --it; --it;
-            _timezero_liveids.erase(_timezero_liveids.begin(),it);
+        if (_timezero_liveids.size() > 5) {
+            map<time_t, vector<int> >::iterator it = _timezero_liveids.end();
+            --it;
+            --it;
+            _timezero_liveids.erase(_timezero_liveids.begin(), it);
         }
-        
+
         int usec = _t2.tv_usec - _t1.tv_usec;
         time_t sec = _t2.tv_sec - _t1.tv_sec;
         if (usec < 0) {
@@ -71,7 +75,7 @@ void EdsPointThread::run() {
 
 
         LOG() << debug << "Thread:" << (unsigned int) id() << " elapsed time:" << sec << "." << usec << endl;
-        _elapsed_time = sec * 1000 + usec/1000;
+        _elapsed_time = sec * 1000 + usec / 1000;
         if (sec < _intval_time) {
             usleep_time = 1000000 * (_intval_time - sec) - usec;
             usleep(usleep_time);
@@ -151,13 +155,14 @@ bool EdsPointThread::synchronize() {
     }
     return true;
 }
-SwitchData::SwitchNode* EdsPointThread::findSwitchNode(const string&tgn){
-    map<string,SwitchData::SwitchNode*>::iterator it = _switch_data_tmp_cache.find(tgn);
-    if(it != _switch_data_tmp_cache.end()){
+
+SwitchData::SwitchNode* EdsPointThread::findSwitchNode(const string&tgn) {
+    map<string, SwitchData::SwitchNode*>::iterator it = _switch_data_tmp_cache.find(tgn);
+    if (it != _switch_data_tmp_cache.end()) {
         return it->second;
-    }else{
+    } else {
         SwitchData::SwitchNode* node = _switch_data->findSwitchNode(tgn);
-        if(node){
+        if (node) {
             _switch_data_tmp_cache[tgn] = node;
             return node;
         }
@@ -165,21 +170,22 @@ SwitchData::SwitchNode* EdsPointThread::findSwitchNode(const string&tgn){
     _switch_data_tmp_cache[tgn] = NULL;
     return NULL;
 }
-void EdsPointThread::checkSwitchData(const string& tgn,time_t t,int val){
-    if(_switch_data){
+
+void EdsPointThread::checkSwitchData(const string& tgn, time_t t, int val) {
+    if (_switch_data) {
         SwitchData::SwitchNode* node = findSwitchNode(tgn);
-        if(t==0) val = -1;
-        if(node){
+        if (t == 0) val = -1;
+        if (node) {
             int type = node->switchType(tgn);
-            if(type == 1){
-                if(val != node->v1){
+            if (type == 1) {
+                if (val != node->v1) {
                     //changed
                     node->t1 = t;
                     node->last_uptime = _t1.tv_sec;
                     _changed_switch_nodes.insert(node);
                 }
-            }else if(type == 2){
-                if(val != node->v2){
+            } else if (type == 2) {
+                if (val != node->v2) {
                     //changed
                     node->t2 = t;
                     node->last_uptime = _t1.tv_sec;
@@ -190,7 +196,7 @@ void EdsPointThread::checkSwitchData(const string& tgn,time_t t,int val){
     }
 }
 
-bool EdsPointThread::getLivePointValue(time_t t,int liveid) {
+bool EdsPointThread::getLivePointValue(time_t t, int liveid) {
     if (!checkLiveClient()) return false;
     try {
         myPointCache& cache = _liveid_pos[liveid];
@@ -201,10 +207,10 @@ bool EdsPointThread::getLivePointValue(time_t t,int liveid) {
         char quality;
         float value = _live_client->readAnalog(liveid, &quality);
         //switch
-        
+
         const string& point = _points[cache.pos];
-        
-        checkSwitchData(point,ts,value);
+
+        checkSwitchData(point, ts, value);
 
         if (ts > 0) {
             {
@@ -227,7 +233,7 @@ bool EdsPointThread::getLivePointValue(time_t t,int liveid) {
                 cache.values.erase(cache.values.begin(), it);
                 //LOG() << debug << "Point Data clear:" << point << " cache.value.size=" << cache.values.size() << endl;
             }
-            
+
             return true;
         } else {
             //todo controler getdata after 5 min later.
@@ -248,7 +254,7 @@ void EdsPointThread::getPointsValue(time_t t) {
     }
     map<int, myPointCache>::const_iterator it = _liveid_pos.begin();
     while (it != _liveid_pos.end()) {
-        getLivePointValue(t,it->first);
+        getLivePointValue(t, it->first);
         ++it;
     }
 }
@@ -261,10 +267,10 @@ void EdsPointThread::record() {
     };
     char buffer[buffer_size];
     int kafka_cache_id = 0;
-    int l =0;
+    int l = 0;
     //string point_record;
     //_kafka_cache.clear();
-    map<time_t,string> date_time_str_cache;
+    map<time_t, string> date_time_str_cache;
     TL_Datetime dt;
     while (it != _liveid_pos.end()) {
         myPointCache& cache = it->second;
@@ -273,7 +279,7 @@ void EdsPointThread::record() {
         if (cache.values.size() > 0) {
             std::map<int, myPointValue>::value_type & v = *cache.values.rbegin();
             if (cache.last_record_ts < v.first) {
-                
+
                 const myPointValue& pointv = v.second;
                 if (pointv.type != 'B' && pointv.type != 'P') {
                     l = snprintf(buffer, buffer_size, "%f|%c", pointv.value.f, pointv.quality);
@@ -282,11 +288,11 @@ void EdsPointThread::record() {
                 }
                 //可以拆分线程去独立处理，提升速度
                 string & dtstr = date_time_str_cache[v.first];
-                if(dtstr.size() == 0){
+                if (dtstr.size() == 0) {
                     dt.setTime(v.first);
                     dtstr = dt.toString();
                 }
-                
+
                 //dt.toString();
                 if (_is_record_file) {
                     //DLOG("point") << noop << point << "|" << wizid << "|" << dtstr << "|" << buffer << endl;
@@ -294,14 +300,14 @@ void EdsPointThread::record() {
                 }
                 if (_is_record_kafka) {
                     string& point_record = _kafka_cache[kafka_cache_id];
-		    point_record.clear();
+                    point_record.clear();
                     point_record.assign(point);
                     point_record.append("|");
                     point_record.append(wizid);
                     point_record.append("|");
                     point_record.append(dtstr);
                     point_record.append("|");
-                    point_record.append(buffer,l);
+                    point_record.append(buffer, l);
                     ++kafka_cache_id;
                     //_kafka_cache.push_back(point_record);
                 }
@@ -316,44 +322,50 @@ void EdsPointThread::record() {
         //LOG() << debug << "write2Kafka:" << _kafka_cache.size() << endl;
         _kafka_svr->write2Kafka(_topicname, _kafka_cache, kafka_cache_id, _partition_num, WRITE_KAFKA_TYPE_POLL);
     }
-    
+
     recordSwitchData();
 }
-void EdsPointThread::recordSwitchData(){
-    set<SwitchData::SwitchNode*>::iterator it =  _changed_switch_nodes.begin();
+
+void EdsPointThread::recordSwitchData() {
+    set<SwitchData::SwitchNode*>::iterator it = _changed_switch_nodes.begin();
     int kafka_cache_id = 0;
-    while(it != _changed_switch_nodes.end()){
+
+    enum {
+        tmpsize = 256
+    };
+    char tmp[tmpsize];
+    while (it != _changed_switch_nodes.end()) {
         SwitchData::SwitchNode* node = *it;
-        //int i = snprintf();
         string& switch_record = _kafka_cache[kafka_cache_id];
         switch_record.assign(node->tgn1);
         switch_record.append("|");
         switch_record.append(node->cn1);
         switch_record.append("|");
-        switch_record.append(node->t1);
-        switch_record.append("|");
-        switch_record.append(node->v1);
-        switch_record.append("|");
+        int i = snprintf(tmp, tmpsize, "%lld|%lld|", node->t1, node->v1);
+        switch_record.append(tmp, i);
+
         switch_record.append(node->tgn2);
         switch_record.append("|");
         switch_record.append(node->cn2);
         switch_record.append("|");
-        switch_record.append(node->t2);
-        switch_record.append("|");
-        switch_record.append(node->v2);     
-        ++ kafka_cache_id;
+        i = snprintf(tmp, tmpsize, "%lld|%lld|", node->t2, node->v2);
+        switch_record.append(tmp, i);
+        ++kafka_cache_id;
         ++it;
     }
     _kafka_svr->write2Kafka(_switch_topic_name, _kafka_cache, kafka_cache_id, _switch_partition_num, WRITE_KAFKA_TYPE_POLL);
 }
+
 void EdsPointThread::setInterval(int intval) {
     _intval_time = intval;
     if (_intval_time <= 0) _intval_time = 1;
 }
-void EdsPointThread::setThreadNo(int tno){
+
+void EdsPointThread::setThreadNo(int tno) {
     _thread_no = tno;
 }
-int EdsPointThread::getThreadNo(){
+
+int EdsPointThread::getThreadNo() {
     return _thread_no;
 }
 
@@ -380,41 +392,42 @@ size_t EdsPointThread::getInvalidIdSize() {
     //无效id数
     return _noliveid_points.size();
 }
-string EdsPointThread::status2Json(){
+
+string EdsPointThread::status2Json() {
     ostringstream os;
     os << "{file:'";
-    os << _point_file << "',threadAddr:'" << (void*)this << "',threadNo:" << _thread_no << ",intval:" << _intval_time << ",validIdSize:";
+    os << _point_file << "',threadAddr:'" << (void*) this << "',threadNo:" << _thread_no << ",intval:" << _intval_time << ",validIdSize:";
     os << getValidIdSize() << ",InvalidIdSize:"; //有效点
     os << getInvalidIdSize() << ",ZeroTsSize:"; //无效点
-    if(_timezero_liveids.size() > 0){
+    if (_timezero_liveids.size() > 0) {
         os << _timezero_liveids.rbegin()->second.size(); //TS 为0点
-    }else{
+    } else {
         os << "'no data'";
     }
-    os << ",elapsedTime:" <<_elapsed_time;
+    os << ",elapsedTime:" << _elapsed_time;
     os << "}";
     return os.str();
 }
 
-void EdsPointThread::zeroTsIds2Json(ostream& os){
+void EdsPointThread::zeroTsIds2Json(ostream& os) {
     os << "{file:'" << _point_file << "',";
     os << "zerotgn:[";
-    if(_timezero_liveids.size() > 0){
+    if (_timezero_liveids.size() > 0) {
         const vector<int>& zvs = _timezero_liveids.rbegin()->second;
-        
+
         vector<int>::const_iterator it = zvs.begin();
         vector<int>::const_iterator end = zvs.end();
         --end;
         int i = 0;
-        while(it != end){
+        while (it != end) {
             os << "'" << _points[_liveid_pos[*it].pos] << "',";
             ++it;
-            if(++i%20 == 0){
+            if (++i % 20 == 0) {
                 os << "\n";
             }
             //if(it!=)
         }
-        if(it != zvs.end()){
+        if (it != zvs.end()) {
             os << "'" << _points[_liveid_pos[*it].pos] << "'";
         }
     }

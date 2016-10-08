@@ -151,10 +151,23 @@ bool EdsPointThread::synchronize() {
     }
     return true;
 }
-
+SwitchData::SwitchNode* EdsPointThread::findSwitchNode(const string&tgn){
+    map<string,SwitchData::SwitchNode*>::iterator it = _switch_data_tmp_cache.find(tgn);
+    if(it != _switch_data_tmp_cache.end()){
+        return it->second;
+    }else{
+        SwitchData::SwitchNode* node = _switch_data->findSwitchNode(tgn);
+        if(node){
+            _switch_data_tmp_cache[tgn] = node;
+            return node;
+        }
+    }
+    _switch_data_tmp_cache[tgn] = NULL;
+    return NULL;
+}
 void EdsPointThread::checkSwitchData(const string& tgn,time_t t,int val){
     if(_switch_data){
-        SwitchData::SwitchNode* node = _switch_data->findSwitchNode(tgn);
+        SwitchData::SwitchNode* node = findSwitchNode(tgn);
         if(t==0) val = -1;
         if(node){
             int type = node->switchType(tgn);
@@ -244,7 +257,7 @@ void EdsPointThread::record() {
     map<int, myPointCache>::iterator it = _liveid_pos.begin();
 
     enum {
-        buffer_size = 128
+        buffer_size = 256
     };
     char buffer[buffer_size];
     int kafka_cache_id = 0;
@@ -303,8 +316,36 @@ void EdsPointThread::record() {
         //LOG() << debug << "write2Kafka:" << _kafka_cache.size() << endl;
         _kafka_svr->write2Kafka(_topicname, _kafka_cache, kafka_cache_id, _partition_num, WRITE_KAFKA_TYPE_POLL);
     }
+    
+    recordSwitchData();
 }
-
+void EdsPointThread::recordSwitchData(){
+    set<SwitchData::SwitchNode*>::iterator it =  _changed_switch_nodes.begin();
+    int kafka_cache_id = 0;
+    while(it != _changed_switch_nodes.end()){
+        SwitchData::SwitchNode* node = *it;
+        //int i = snprintf();
+        string& switch_record = _kafka_cache[kafka_cache_id];
+        switch_record.assign(node->tgn1);
+        switch_record.append("|");
+        switch_record.append(node->cn1);
+        switch_record.append("|");
+        switch_record.append(node->t1);
+        switch_record.append("|");
+        switch_record.append(node->v1);
+        switch_record.append("|");
+        switch_record.append(node->tgn2);
+        switch_record.append("|");
+        switch_record.append(node->cn2);
+        switch_record.append("|");
+        switch_record.append(node->t2);
+        switch_record.append("|");
+        switch_record.append(node->v2);     
+        ++ kafka_cache_id;
+        ++it;
+    }
+    _kafka_svr->write2Kafka(_switch_topic_name, _kafka_cache, kafka_cache_id, _switch_partition_num, WRITE_KAFKA_TYPE_POLL);
+}
 void EdsPointThread::setInterval(int intval) {
     _intval_time = intval;
     if (_intval_time <= 0) _intval_time = 1;

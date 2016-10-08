@@ -78,9 +78,11 @@ public:
     bool synchronize();
     void getPointsValue(time_t t);
     void record();
+    void recordSwitchData();
     void setInterval(int intval);
     void setThreadNo(int tno);
     void checkSwitchData(const string& tgn,time_t t,int val);
+    SwitchData::SwitchNode* findSwitchNode(const string&tgn);
     int getThreadNo();
     void setKafkaServer(bool iskafka,KafkaServer * kafka_svr=NULL,const string & topic="",int partition=-1);
     bool getPointValuesFromCache(int liveid,std::map<int, myPointValue>& values);
@@ -123,6 +125,7 @@ private:
     string _point_file;
     int _partition_num;
     int _switch_partition_num;
+    map<string,SwitchData::SwitchNode*> _switch_data_tmp_cache;
 };
 
 #endif /* EDSPOINTTHREAD_H */

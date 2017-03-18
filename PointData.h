@@ -53,10 +53,11 @@ class SwitchData {
 public:
 
     struct SwitchNode {
+        string eqid;
         string tgn1;
         string tgn2;
-        string cn1;
-        string cn2;
+        //string cn1;
+        //string cn2;
         int v1;
         int v2;
         time_t t1;
@@ -71,11 +72,12 @@ public:
             if (tgn == tgn2) return 2;
             return 0;
         }
-        SwitchNode(const string & t1,const string & t2,const string & c1,const string &c2){
+        SwitchNode(const string & ei,const string & t1,const string & t2){
+            eqid = ei;
             tgn1 = t1;
             tgn2 = t2;
-            cn1 = c1;
-            cn2 = c2;
+            //cn1 = c1;
+            //cn2 = c2;
             v1 = v2 = 0;
             last_uptime = 0;
         }

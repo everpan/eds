@@ -174,21 +174,26 @@ SwitchData::SwitchNode* EdsPointThread::findSwitchNode(const string&tgn) {
 void EdsPointThread::checkSwitchData(const string& tgn, time_t t, int val) {
     if (_switch_data) {
         SwitchData::SwitchNode* node = findSwitchNode(tgn);
-        if (t == 0) val = -1;
+        if (t == 0){
+			val = -1;
+			t = _t1.tv_sec;
+		}
         if (node) {
             int type = node->switchType(tgn);
             if (type == 1) {
                 if (val != node->v1) {
                     //changed
                     node->t1 = t;
-                    node->last_uptime = _t1.tv_sec;
+                    node->last_uptime = t;
+					node->v1 = val;
                     _changed_switch_nodes.insert(node);
                 }
             } else if (type == 2) {
                 if (val != node->v2) {
                     //changed
                     node->t2 = t;
-                    node->last_uptime = _t1.tv_sec;
+                    node->last_uptime = t;
+					node->v2 = val;
                     _changed_switch_nodes.insert(node);
                 }
             }
@@ -337,18 +342,20 @@ void EdsPointThread::recordSwitchData() {
     while (it != _changed_switch_nodes.end()) {
         SwitchData::SwitchNode* node = *it;
         string& switch_record = _kafka_cache[kafka_cache_id];
-        switch_record.assign(node->tgn1);
+        
+        switch_record.assign(node->eqid);
         switch_record.append("|");
-        switch_record.append(node->cn1);
-        switch_record.append("|");
-        int i = snprintf(tmp, tmpsize, "%lld|%lld|", node->t1, node->v1);
+        switch_record.append(node->tgn1);
+        //switch_record.append(node->cn1);
+        //switch_record.append("|");
+        int i = snprintf(tmp, tmpsize, "|%lld|%lld|", node->/*t1*/last_uptime, node->v1);
         switch_record.append(tmp, i);
 
         switch_record.append(node->tgn2);
-        switch_record.append("|");
-        switch_record.append(node->cn2);
-        switch_record.append("|");
-        i = snprintf(tmp, tmpsize, "%lld|%lld|", node->t2, node->v2);
+        //switch_record.append("|");
+        //switch_record.append(node->cn2);
+        //switch_record.append("|");
+        i = snprintf(tmp, tmpsize, "|%lld|%lld", node->/*t2*/last_uptime, node->v2);
         switch_record.append(tmp, i);
         ++kafka_cache_id;
         ++it;

@@ -77,8 +77,8 @@ void SwitchData::loadFromFile(const string& filename){
     while (!file.eof()) {
         getline(file, line);
         TL_Common::split(fields, line, "|,");
-        if (fields.size() > 3){
-            SwitchNode* node = new SwitchNode(fields[0],fields[1],fields[2],fields[3]);
+        if (fields.size() > 2){
+            SwitchNode* node = new SwitchNode(fields[0],fields[1],fields[2]);
             
             _nodes.insert(node);
             //SwitchNode& n = const_cast<SwitchNode*>(*(_nodes.find(node)));

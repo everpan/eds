@@ -31,9 +31,9 @@ public:
     EdsRequestHandler(){}
     void handleRequest(HTTPServerRequest& request,HTTPServerResponse& response);
 };
-class EdsRequestHandlerFactor : public HTTPRequestHandlerFactory{
+class EdsRequestHandlerFactory : public HTTPRequestHandlerFactory{
 public:
-    EdsRequestHandlerFactor(){}
+    EdsRequestHandlerFactory(){}
     HTTPRequestHandler * createRequestHandler(const HTTPServerRequest& request){
         //cout << "EdsRequestHandlerFactor " << request.getURI() << endl;
         return new EdsRequestHandler;

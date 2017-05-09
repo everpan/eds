@@ -33,6 +33,7 @@ public:
 	void setTimeStringFormat(const std::string& fmt);
 	time_t getTimestamp();
 	time_t getBeijingTimestamp();
+        static time_t BeiJingTimeInterval();
 	struct timeval getTimeOfDay();
 	void sync();
 	void syncOnlySecond();

@@ -7,6 +7,8 @@
 
 #include "HttpServer.h"
 #include "EdsPointThread.h"
+#define DAY_SECONDS (24 * 60 * 60)
+#define BEIJING_TIME_INV (8 * 60 * 60)
 
 void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResponse& response) {
     std::ostream & ostr = response.send();
@@ -65,7 +67,7 @@ void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResp
             std::vector<std::string> ps;
             tidp::TL_Common::split(ps, uri.substr(sizeof ("/Api/eds/mtgn/") - 1), "/");
             if (ps.size() > 1) {
-                map<string, pair<EdsPointThread*, int> >::iterator it2 = _tgn_thread_liveid.find(ps[0]);
+                map<string, pair<EdsPointThread*, int> >::const_iterator it2 = _tgn_thread_liveid.find(ps[0]);
                 if (it2 != _tgn_thread_liveid.end()) {
                     ostr << "{tgn:\"" << ps[0] << "\",data:[";
                     std::map<int, myPointValue> values;
@@ -114,7 +116,7 @@ void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResp
                 std::map<int, myPointValue> values;
                 std::vector<std::string>::const_iterator it = wizids.begin();
                 while (it != wizids.end()) {
-                    map<string, pair<EdsPointThread*, int> >::iterator it2 = _tgn_thread_liveid.find(*it);
+                    map<string, pair<EdsPointThread*, int> >::const_iterator it2 = _tgn_thread_liveid.find(*it);
                     if (it2 != _tgn_thread_liveid.end()) {
                         ostr << "{tgn:\"" << *it << "\",data:[";
                         if (it2->second.first->getPointValuesFromCache(it2->second.second, values)) {
@@ -175,7 +177,7 @@ void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResp
         }
         ostr << "]";
     } else if (uri.find("/Api/eds/zero/") != std::string::npos) {
-        string numstr = uri.substr(sizeof ("/Api/eds/zero/"));
+        string numstr = uri.substr(sizeof ("/Api/eds/zero/") - 1);
         int tno = -1;
         if (numstr.size() > 0) {
             tno = atoi(numstr.c_str());
@@ -190,6 +192,39 @@ void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResp
             }
         }
         ostr << "{retcode:-1,retmsg=\"unknow thread id:" << tno << "|" << numstr << "\"}";
+    } else if (uri.find("/Api/eds/history/") != std::string::npos) {
+        string subquery = uri.substr(sizeof ("/Api/eds/history/") - 1);
+        //tgn/$tgn/$stime/$etime
+        //tgn配置文件的迁移,会对该方案产生影响
+        std::vector<std::string> tmp;
+        tidp::TL_Common::split(tmp, subquery, "/");
+        if (tmp.size() < 2) {
+            ostr << "{retcode:-1,retmsg=\"param not enough\"}";
+        } else {
+            time_t now = time(NULL);
+            string tgn = tmp[0];
+            time_t stime = 0;
+            if (tmp[1].size() > 0) stime = atoll(tmp[1].c_str());
+            time_t etime = 0;
+            if (tmp.size() > 2 && tmp[2].size() > 0) etime = atoll(tmp[2].c_str());
+            if (etime <= 0 || etime > now) etime = now;
+            if (tgn.size() < 3 || stime > etime || stime <= 0 || etime <= 0) {
+                ostr << "{retcode:-1,retmsg=\"param  error:[" << tgn << "," << stime << "," << etime << "]\"}";
+            } else if (etime - stime > DAY_SECONDS ||
+                    (stime + BEIJING_TIME_INV) / DAY_SECONDS != (etime + BEIJING_TIME_INV) / DAY_SECONDS
+                    ) {
+                ostr << "{retcode:-1,retmsg=\"stime etime not in same day.\"}";
+            } else {
+                map<string, pair<EdsPointThread*, int> >::const_iterator it = _tgn_thread_liveid.find(tgn);
+                if (it == _tgn_thread_liveid.end()) {
+                    ostr << "{retcode:-1,retmsg=\"tgn:" << tgn << " is not available.\"}";
+                } else {
+                    EdsPointThread* eptr = it->second.first;
+                    eptr->history(ostr, tgn, stime, etime);
+                }
+            }
+        }
+        
     } else {
         ostr << "{retcode:-1,retmsg=\"unknow api.\"}\n";
     }
@@ -215,8 +250,8 @@ void EdsHttpServer::uninitialize() {
 }
 
 int EdsHttpServer::main(const std::vector<std::string>& arg) {
-    ServerSocket svs(9090);
-    HTTPServer svr(new EdsRequestHandlerFactor, svs, new HTTPServerParams);
+    ServerSocket svs(9191);
+    HTTPServer svr(new EdsRequestHandlerFactory(), svs, new HTTPServerParams);
     cout << "svr.start ..." << endl;
     svr.start();
     waitForTerminationRequest();

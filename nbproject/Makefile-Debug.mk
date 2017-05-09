@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/API/C/edsapi/src/Backend.o \
 	${OBJECTDIR}/API/C/edsapi/src/Errors.o \
 	${OBJECTDIR}/API/C/edsapi/src/LiveClient.o \
+	${OBJECTDIR}/BitCompress.o \
 	${OBJECTDIR}/EdsLiveData.o \
 	${OBJECTDIR}/EdsPointThread.o \
 	${OBJECTDIR}/HttpServer.o \
@@ -50,10 +51,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/TL_IniFile.o \
 	${OBJECTDIR}/TL_Logger.o \
 	${OBJECTDIR}/TL_MemString.o \
+	${OBJECTDIR}/TL_Mmap.o \
 	${OBJECTDIR}/TL_Option.o \
 	${OBJECTDIR}/TL_Thread.o \
 	${OBJECTDIR}/TL_ThreadLock.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/sqlite3.o
 
 
 # C Compiler Flags
@@ -84,100 +87,115 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eds: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eds ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/API/C/edsapi/src/ArchClient.o: API/C/edsapi/src/ArchClient.cpp 
+${OBJECTDIR}/API/C/edsapi/src/ArchClient.o: API/C/edsapi/src/ArchClient.cpp
 	${MKDIR} -p ${OBJECTDIR}/API/C/edsapi/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/API/C/edsapi/src/ArchClient.o API/C/edsapi/src/ArchClient.cpp
 
-${OBJECTDIR}/API/C/edsapi/src/Backend.o: API/C/edsapi/src/Backend.cpp 
+${OBJECTDIR}/API/C/edsapi/src/Backend.o: API/C/edsapi/src/Backend.cpp
 	${MKDIR} -p ${OBJECTDIR}/API/C/edsapi/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/API/C/edsapi/src/Backend.o API/C/edsapi/src/Backend.cpp
 
-${OBJECTDIR}/API/C/edsapi/src/Errors.o: API/C/edsapi/src/Errors.cpp 
+${OBJECTDIR}/API/C/edsapi/src/Errors.o: API/C/edsapi/src/Errors.cpp
 	${MKDIR} -p ${OBJECTDIR}/API/C/edsapi/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/API/C/edsapi/src/Errors.o API/C/edsapi/src/Errors.cpp
 
-${OBJECTDIR}/API/C/edsapi/src/LiveClient.o: API/C/edsapi/src/LiveClient.cpp 
+${OBJECTDIR}/API/C/edsapi/src/LiveClient.o: API/C/edsapi/src/LiveClient.cpp
 	${MKDIR} -p ${OBJECTDIR}/API/C/edsapi/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/API/C/edsapi/src/LiveClient.o API/C/edsapi/src/LiveClient.cpp
 
-${OBJECTDIR}/EdsLiveData.o: EdsLiveData.cpp 
+${OBJECTDIR}/BitCompress.o: BitCompress.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BitCompress.o BitCompress.cpp
+
+${OBJECTDIR}/EdsLiveData.o: EdsLiveData.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EdsLiveData.o EdsLiveData.cpp
 
-${OBJECTDIR}/EdsPointThread.o: EdsPointThread.cpp 
+${OBJECTDIR}/EdsPointThread.o: EdsPointThread.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EdsPointThread.o EdsPointThread.cpp
 
-${OBJECTDIR}/HttpServer.o: HttpServer.cpp 
+${OBJECTDIR}/HttpServer.o: HttpServer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HttpServer.o HttpServer.cpp
 
-${OBJECTDIR}/KafkaServer.o: KafkaServer.cpp 
+${OBJECTDIR}/KafkaServer.o: KafkaServer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/KafkaServer.o KafkaServer.cpp
 
-${OBJECTDIR}/PointData.o: PointData.cpp 
+${OBJECTDIR}/PointData.o: PointData.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PointData.o PointData.cpp
 
-${OBJECTDIR}/TL_Common.o: TL_Common.cpp 
+${OBJECTDIR}/TL_Common.o: TL_Common.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_Common.o TL_Common.cpp
 
-${OBJECTDIR}/TL_Datetime.o: TL_Datetime.cpp 
+${OBJECTDIR}/TL_Datetime.o: TL_Datetime.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_Datetime.o TL_Datetime.cpp
 
-${OBJECTDIR}/TL_Exp.o: TL_Exp.cpp 
+${OBJECTDIR}/TL_Exp.o: TL_Exp.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_Exp.o TL_Exp.cpp
 
-${OBJECTDIR}/TL_IniFile.o: TL_IniFile.cpp 
+${OBJECTDIR}/TL_IniFile.o: TL_IniFile.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_IniFile.o TL_IniFile.cpp
 
-${OBJECTDIR}/TL_Logger.o: TL_Logger.cpp 
+${OBJECTDIR}/TL_Logger.o: TL_Logger.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_Logger.o TL_Logger.cpp
 
-${OBJECTDIR}/TL_MemString.o: TL_MemString.cpp 
+${OBJECTDIR}/TL_MemString.o: TL_MemString.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_MemString.o TL_MemString.cpp
 
-${OBJECTDIR}/TL_Option.o: TL_Option.cpp 
+${OBJECTDIR}/TL_Mmap.o: TL_Mmap.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_Mmap.o TL_Mmap.cpp
+
+${OBJECTDIR}/TL_Option.o: TL_Option.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_Option.o TL_Option.cpp
 
-${OBJECTDIR}/TL_Thread.o: TL_Thread.cpp 
+${OBJECTDIR}/TL_Thread.o: TL_Thread.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_Thread.o TL_Thread.cpp
 
-${OBJECTDIR}/TL_ThreadLock.o: TL_ThreadLock.cpp 
+${OBJECTDIR}/TL_ThreadLock.o: TL_ThreadLock.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TL_ThreadLock.o TL_ThreadLock.cpp
 
-${OBJECTDIR}/main.o: main.cpp 
+${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -IAPI/C/edsapi/include/ -Iinclude -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/sqlite3.o: sqlite3.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sqlite3.o sqlite3.c
 
 # Subprojects
 .build-subprojects:
@@ -185,7 +203,6 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/eds
 
 # Subprojects
 .clean-subprojects:

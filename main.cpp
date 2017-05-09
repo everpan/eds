@@ -146,6 +146,7 @@ int main(int argc, char** argv) {
             edsthread->start();
             edsthread->setThreadNo(++tno);
             edsthread->getControl().detach();
+            edsthread->setHistoryRootPath(ini["History.store_path"]);
             _eds_threads.push_back(edsthread);
             ++it;
         }

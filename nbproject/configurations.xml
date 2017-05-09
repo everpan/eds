@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="97">
+<configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles" displayName="头文件" projectFiles="true">
       <itemPath>API/C/edsapi/src/ArchBackend.h</itemPath>
       <itemPath>API/C/edsapi/src/Backend.h</itemPath>
+      <itemPath>BitCompress.h</itemPath>
       <itemPath>EdsLiveData.h</itemPath>
       <itemPath>EdsPointThread.h</itemPath>
       <itemPath>HttpServer.h</itemPath>
@@ -17,15 +18,19 @@
       <itemPath>TL_Lock.h</itemPath>
       <itemPath>TL_Logger.h</itemPath>
       <itemPath>TL_MemString.h</itemPath>
+      <itemPath>TL_Mmap.h</itemPath>
       <itemPath>TL_Monitor.h</itemPath>
       <itemPath>TL_Option.h</itemPath>
       <itemPath>TL_Singleton.h</itemPath>
       <itemPath>TL_Thread.h</itemPath>
       <itemPath>TL_ThreadLock.h</itemPath>
+      <itemPath>sqlite3.h</itemPath>
+      <itemPath>sqlite3ext.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="源文件" projectFiles="true">
       <itemPath>API/C/edsapi/src/ArchClient.cpp</itemPath>
       <itemPath>API/C/edsapi/src/Backend.cpp</itemPath>
+      <itemPath>BitCompress.cpp</itemPath>
       <itemPath>EdsLiveData.cpp</itemPath>
       <itemPath>EdsPointThread.cpp</itemPath>
       <itemPath>API/C/edsapi/src/Errors.cpp</itemPath>
@@ -39,10 +44,12 @@
       <itemPath>TL_IniFile.cpp</itemPath>
       <itemPath>TL_Logger.cpp</itemPath>
       <itemPath>TL_MemString.cpp</itemPath>
+      <itemPath>TL_Mmap.cpp</itemPath>
       <itemPath>TL_Option.cpp</itemPath>
       <itemPath>TL_Thread.cpp</itemPath>
       <itemPath>TL_ThreadLock.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>sqlite3.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles" displayName="资源文件" projectFiles="true">
     </logicalFolder>
@@ -57,6 +64,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>sqlite.sql</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -111,6 +119,10 @@
       </item>
       <item path="API/C/edsapi/src/LiveClient.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="BitCompress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BitCompress.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="EdsLiveData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="EdsLiveData.h" ex="false" tool="3" flavor2="0">
@@ -157,6 +169,10 @@
       </item>
       <item path="TL_MemString.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="TL_Mmap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Mmap.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="TL_Monitor.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TL_Option.cpp" ex="false" tool="1" flavor2="0">
@@ -174,6 +190,14 @@
       <item path="TL_ThreadLock.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sqlite.sql" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sqlite3.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sqlite3.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sqlite3ext.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -210,6 +234,10 @@
       </item>
       <item path="API/C/edsapi/src/LiveClient.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="BitCompress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BitCompress.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="EdsLiveData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="EdsLiveData.h" ex="false" tool="3" flavor2="0">
@@ -256,6 +284,10 @@
       </item>
       <item path="TL_MemString.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="TL_Mmap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TL_Mmap.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="TL_Monitor.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TL_Option.cpp" ex="false" tool="1" flavor2="0">
@@ -273,6 +305,14 @@
       <item path="TL_ThreadLock.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sqlite.sql" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sqlite3.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sqlite3.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sqlite3ext.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

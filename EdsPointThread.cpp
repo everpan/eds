@@ -735,14 +735,14 @@ void EdsPointThread::history(ostream& os, const string& tgn, time_t stime, time_
             dbfile += tmp;
             int ret = sqlite3_open_v2(dbfile.c_str(), &db, SQLITE_OPEN_READONLY, NULL);
             if (ret != SQLITE_OK) {
-                os << "{retcode:-1,retmsg=\"" << sqlite3_errmsg(db) << ":" << dbfile << "\"}";
+                os << "{retcode:-1,retmsg:\"" << sqlite3_errmsg(db) << ":" << dbfile << "\"}";
                 break;
             }
             sprintf(tmp, "tgn_%d.data", _thread_no);
             string datafile = history_root_path + dt.toString("/%Y%m%d/") + tmp;
             data_fd = open(datafile.c_str(), O_RDWR);
             if (data_fd < 0) {
-                os << "{retcode:-1,retmsg=\"data file " << datafile << " open faild.\"}";
+                os << "{retcode:-1,retmsg:\"data file " << datafile << " open faild.\"}";
                 break;
             }
         }
@@ -760,7 +760,7 @@ void EdsPointThread::history(ostream& os, const string& tgn, time_t stime, time_
         sqlite3_finalize(stmt);
 
         if (vtmp.size() == 0) {
-            os << "{retcode:-1,retmsg=\"no block info.\"}";
+            os << "{retcode:-1,retmsg:\"no block info.\"}";
             break;
         }
         char type, quality;
@@ -857,7 +857,7 @@ void EdsPointThread::history(ostream& os, const string& tgn, time_t stime, time_
             }
             os << "]}";
         } else {
-            os << "{retcode:-1,retmsg=\"no data in block\"}";
+            os << "{retcode:-1,retmsg:\"no data in block\"}";
             break;
         }
     } while (0);

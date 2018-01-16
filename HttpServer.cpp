@@ -199,7 +199,7 @@ void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResp
         std::vector<std::string> tmp;
         tidp::TL_Common::split(tmp, subquery, "/");
         if (tmp.size() < 2) {
-            ostr << "{retcode:-1,retmsg=\"param not enough\"}";
+            ostr << "{retcode:-1,retmsg:\"param not enough\"}";
         } else {
             time_t now = time(NULL);
             string tgn = tmp[0];
@@ -209,15 +209,15 @@ void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResp
             if (tmp.size() > 2 && tmp[2].size() > 0) etime = atoll(tmp[2].c_str());
             if (etime <= 0 || etime > now) etime = now;
             if (tgn.size() < 3 || stime > etime || stime <= 0 || etime <= 0) {
-                ostr << "{retcode:-1,retmsg=\"param  error:[" << tgn << "," << stime << "," << etime << "]\"}";
+                ostr << "{retcode:-1,retmsg:\"param  error:[" << tgn << "," << stime << "," << etime << "]\"}";
             } else if (etime - stime > DAY_SECONDS ||
                     (stime + BEIJING_TIME_INV) / DAY_SECONDS != (etime + BEIJING_TIME_INV) / DAY_SECONDS
                     ) {
-                ostr << "{retcode:-1,retmsg=\"stime etime not in same day.\"}";
+                ostr << "{retcode:-1,retmsg:\"stime etime not in same day.\"}";
             } else {
                 map<string, pair<EdsPointThread*, int> >::const_iterator it = _tgn_thread_liveid.find(tgn);
                 if (it == _tgn_thread_liveid.end()) {
-                    ostr << "{retcode:-1,retmsg=\"tgn:" << tgn << " is not available.\"}";
+                    ostr << "{retcode:-1,retmsg:\"tgn:" << tgn << " is not available.\"}";
                 } else {
                     EdsPointThread* eptr = it->second.first;
                     eptr->history(ostr, tgn, stime, etime);
@@ -226,7 +226,7 @@ void EdsRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResp
         }
         
     } else {
-        ostr << "{retcode:-1,retmsg=\"unknow api.\"}\n";
+        ostr << "{retcode:-1,retmsg:\"unknow api.\"}\n";
     }
     ///Api/eds/wizids/PR.AUX.AI.Y0BHE02CE101,PR.AUX.AI.Y0GCB12DP101
 }
